@@ -189,8 +189,4 @@ resource "azurerm_monitor_diagnostic_setting" "kv_monitordiagnostic" {
     category = "AzurePolicyEvaluationDetails"
   }
 
-  metric {
-    category = "AllMetrics"
-    enabled  = true
-  }
 }

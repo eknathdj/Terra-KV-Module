@@ -8,23 +8,21 @@ variable "m_app_name" {
 variable "m_environment_tag" {
   type        = string
   description = <<-EOF
-    (Required) - The environment tag used while tagging the provisioned resources. Allowed values:
-    - `d` (development)
-    - `t` (test)
-    - `q` (qualification)
-    - `i` (integration)
-    - `s` (staging / pre-production)
-    - `p` (production)
-    - `y` (playground)
-    - `m` (mutualized resource)
+    The environment tag used while labeling provisioned resources. Allowed values:
+    - `d` for development
+    - `t` for test
+    - `q` for qualification
+    - `p` for production
+    - `m` for mutualized resource
   EOF
   default     = "d"
 
   validation {
-    condition     = contains(["d", "t", "q", "i", "s", "p", "y", "m"], lower(var.m_environment_tag))
-    error_message = "Unsupported environment tag. Use one of: d,t,q,i,s,p,y,m."
+    condition     = contains(["d", "t", "q", "p", "m"], lower(var.m_environment_tag))
+    error_message = "Unsupported environment tag specified. Supported values: 'd','t','q','p','m'."
   }
 }
+
 
 variable "m_instance_number" {
   type        = string
